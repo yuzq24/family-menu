@@ -1,0 +1,45 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/detail/detail",
+    "pages/cart/cart",
+    "pages/order/order",
+    "pages/mine/mine",
+    "pages/mine/add-dish/add-dish",
+    "pages/mine/manage-dishes/manage-dishes"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "navigationBarTitleText": "家庭菜单",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#86868B",
+    "selectedColor": "#FF9500",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "菜单",
+        "iconPath": "assets/icons/menu.png",
+        "selectedIconPath": "assets/icons/menu-active.png"
+      },
+      {
+        "pagePath": "pages/cart/cart",
+        "text": "购物车",
+        "iconPath": "assets/icons/cart.png",
+        "selectedIconPath": "assets/icons/cart-active.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "assets/icons/mine.png",
+        "selectedIconPath": "assets/icons/mine-active.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}
