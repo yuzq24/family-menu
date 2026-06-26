@@ -1,0 +1,35 @@
+<view class="page">
+  <view wx:if="{{cartItems.length > 0}}" class="cart-list">
+    <view wx:for="{{cartItems}}" wx:key="dishId" class="cart-item">
+      <view class="item-image-placeholder">
+        <text class="item-emoji">{{item.emoji}}</text>
+      </view>
+      <view class="item-info">
+        <view class="item-name">{{item.name}}</view>
+        <view class="item-price">¥{{item.price}}</view>
+      </view>
+      <view class="item-controls">
+        <view class="control-btn" bindtap="onDecrease" data-id="{{item.id}}">-</view>
+        <view class="control-num">{{item.quantity}}</view>
+        <view class="control-btn" bindtap="onIncrease" data-id="{{item.id}}">+</view>
+      </view>
+      <view class="item-delete" bindtap="onDelete" data-id="{{item.id}}">
+        <text>×</text>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{cartItems.length === 0}}" class="empty-state">
+    <view class="empty-icon">🛒</view>
+    <view class="empty-text">购物车是空的</view>
+    <view class="empty-btn" bindtap="onGoMenu">去选购</view>
+  </view>
+
+  <view wx:if="{{cartItems.length > 0}}" class="bottom-bar">
+    <view class="total-section">
+      <view class="total-label">合计</view>
+      <view class="total-price">¥{{totalPrice}}</view>
+    </view>
+    <view class="checkout-btn" bindtap="onCheckout">去结算</view>
+  </view>
+</view>

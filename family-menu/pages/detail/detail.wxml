@@ -1,0 +1,37 @@
+<view class="page">
+  <view class="dish-header">
+    <view class="dish-image-placeholder">
+      <text class="dish-emoji">{{dish.emoji}}</text>
+    </view>
+  </view>
+
+  <view class="dish-content">
+    <view class="dish-basic">
+      <view class="dish-name">{{dish.name}}</view>
+      <view class="category-tag">{{categoryName}}</view>
+    </view>
+
+    <view class="dish-price-row">
+      <text class="price-large">¥{{dish.price}}</text>
+    </view>
+
+    <view class="divider"></view>
+
+    <view class="dish-desc-section">
+      <view class="section-title">菜品介绍</view>
+      <view class="dish-desc">{{dish.description}}</view>
+    </view>
+  </view>
+
+  <view class="bottom-bar">
+    <view class="quantity-section">
+      <view class="quantity-btn" bindtap="onDecrease">-</view>
+      <view class="quantity-num">{{quantity}}</view>
+      <view class="quantity-btn" bindtap="onIncrease">+</view>
+    </view>
+    <view class="action-btns">
+      <view class="btn-add-cart" bindtap="onAddToCart">加入购物车</view>
+      <view class="btn-buy-now" bindtap="onBuyNow">立即下单</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,49 @@
+<view class="page">
+  <view class="search-bar">
+    <input class="search-input" placeholder="搜索菜品" placeholder-class="search-placeholder" bindinput="onSearch" value="{{searchKey}}" />
+  </view>
+
+  <view class="category-tabs">
+    <scroll-view scroll-x class="tabs-scroll">
+      <view class="tabs-container">
+        <view
+          wx:for="{{categories}}"
+          wx:key="key"
+          class="tab-item {{currentCategory === item.key ? 'active' : ''}}"
+          bindtap="onCategoryChange"
+          data-category="{{item.key}}"
+        >
+          {{item.name}}
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class="dish-grid">
+    <view
+      wx:for="{{filteredDishes}}"
+      wx:key="id"
+      class="dish-card"
+      bindtap="onDishTap"
+      data-id="{{item.id}}"
+    >
+      <view class="dish-image-placeholder">
+        <text class="dish-emoji">{{item.emoji}}</text>
+      </view>
+      <view class="dish-info">
+        <view class="dish-name">{{item.name}}</view>
+        <view class="dish-desc text-secondary">{{item.description}}</view>
+        <view class="dish-footer">
+          <text class="dish-price">¥{{item.price}}</text>
+          <view class="add-btn" catchtap="onAddToCart" data-id="{{item.id}}">
+            <text>+</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{filteredDishes.length === 0}}" class="empty-state">
+    <text class="empty-text">暂无菜品</text>
+  </view>
+</view>
