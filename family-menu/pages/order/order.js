@@ -14,10 +14,12 @@ Page({
     const cart = app.getCart();
     const orderItems = cart.map(item => {
       const dish = app.getDishById(item.dishId);
+      const subtotal = dish.price * item.quantity;
       return {
         ...dish,
         quantity: item.quantity,
-        emoji: this.getEmoji(dish.category)
+        emoji: this.getEmoji(dish.category),
+        subtotalText: subtotal.toFixed(2)
       };
     }).filter(item => item.id);
 

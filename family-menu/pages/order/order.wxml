@@ -9,7 +9,7 @@
         <view class="item-name">{{item.name}}</view>
         <view class="item-quantity">x{{item.quantity}}</view>
       </view>
-      <view class="item-price">¥{{(item.price * item.quantity).toFixed(2)}}</view>
+      <view class="item-price">¥{{item.subtotalText}}</view>
     </view>
   </view>
 
