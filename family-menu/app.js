@@ -1,229 +1,178 @@
 App({
   globalData: {
-    dishes: [],
-    cart: [],
-    orders: []
+    userInfo: null,
+    cartList: [],
+    dishList: [
+      {
+        id: 1,
+        name: '红烧肉',
+        description: '经典家常红烧肉，软糯入味',
+        price: 38,
+        category: '荤菜',
+        image: '/images/dish1.jpg',
+        cookingTime: 45,
+        difficulty: '中等',
+        calories: 380,
+        protein: 25,
+        fat: 18,
+        ingredients: ['五花肉 500g', '冰糖 30g', '生抽', '老抽', '料酒', '姜片', '八角', '葱段'],
+        steps: [
+          '五花肉切块，冷水下锅焯水去血沫，捞出沥干备用',
+          '锅中放少许油，加冰糖小火炒至琥珀色起泡',
+          '放入肉块翻炒上色，加生抽、老抽、料酒和姜片八角调味',
+          '加入开水没过肉块，大火烧开后转小火炖40分钟，大火收汁撒葱段即可'
+        ]
+      },
+      {
+        id: 2,
+        name: '西红柿炒蛋',
+        description: '酸甜可口，营养均衡',
+        price: 18,
+        category: '荤菜',
+        image: '/images/dish2.jpg',
+        cookingTime: 15,
+        difficulty: '简单',
+        calories: 180,
+        protein: 12,
+        fat: 10,
+        ingredients: ['鸡蛋 3个', '西红柿 2个', '葱花', '盐', '糖'],
+        steps: [
+          '鸡蛋打散加少许盐，西红柿切块备用',
+          '热锅凉油，倒入蛋液炒至凝固盛出',
+          '锅中放油，放入西红柿翻炒出汁',
+          '加入鸡蛋翻炒均匀，加盐和糖调味，撒葱花出锅'
+        ]
+      },
+      {
+        id: 3,
+        name: '清炒时蔬',
+        description: '新鲜时令蔬菜，清淡健康',
+        price: 15,
+        category: '素菜',
+        image: '',
+        cookingTime: 10,
+        difficulty: '简单',
+        calories: 60,
+        protein: 3,
+        fat: 2,
+        ingredients: ['时令蔬菜 300g', '蒜末', '盐'],
+        steps: [
+          '蔬菜洗净切段',
+          '热锅凉油，爆香蒜末',
+          '放入蔬菜大火快炒',
+          '加盐调味即可出锅'
+        ]
+      },
+      {
+        id: 4,
+        name: '酸辣汤',
+        description: '酸辣开胃，暖身暖心',
+        price: 22,
+        category: '汤品',
+        image: '',
+        cookingTime: 20,
+        difficulty: '中等',
+        calories: 120,
+        protein: 8,
+        fat: 5,
+        ingredients: ['豆腐', '木耳', '金针菇', '鸡蛋', '醋', '胡椒粉', '淀粉'],
+        steps: [
+          '豆腐切丝，木耳切丝，金针菇去根',
+          '锅中加水烧开，放入豆腐木耳金针菇',
+          '加入醋和胡椒粉调味',
+          '淋入蛋液，加淀粉勾芡即可'
+        ]
+      },
+      {
+        id: 5,
+        name: '蛋炒饭',
+        description: '粒粒分明，香气四溢',
+        price: 16,
+        category: '主食',
+        image: '',
+        cookingTime: 10,
+        difficulty: '简单',
+        calories: 280,
+        protein: 10,
+        fat: 8,
+        ingredients: ['米饭 1碗', '鸡蛋 2个', '葱花', '盐'],
+        steps: [
+          '米饭提前打散，鸡蛋打散',
+          '热锅凉油，倒入蛋液炒散',
+          '加入米饭大火快炒',
+          '加盐调味，撒葱花出锅'
+        ]
+      },
+      {
+        id: 6,
+        name: '芒果布丁',
+        description: '香甜嫩滑，饭后甜品',
+        price: 12,
+        category: '甜品',
+        image: '',
+        cookingTime: 30,
+        difficulty: '中等',
+        calories: 150,
+        protein: 3,
+        fat: 4,
+        ingredients: ['芒果 1个', '牛奶 200ml', '吉利丁片', '糖'],
+        steps: [
+          '芒果切块，吉利丁片泡软',
+          '牛奶加热，加入吉利丁片搅拌至融化',
+          '加入芒果块和糖，倒入模具',
+          '放入冰箱冷藏2小时以上'
+        ]
+      }
+    ],
+    orders: [
+      {
+        id: '20250701001',
+        dishes: [
+          { name: '红烧肉', quantity: 2, price: 38 },
+          { name: '西红柿炒蛋', quantity: 1, price: 18 },
+          { name: '蛋炒饭', quantity: 1, price: 16 }
+        ],
+        total: 109,
+        status: 'making',
+        time: '12:30',
+        date: '今天'
+      },
+      {
+        id: '20250701002',
+        dishes: [
+          { name: '清炒时蔬', quantity: 1, price: 15 },
+          { name: '酸辣汤', quantity: 1, price: 22 }
+        ],
+        total: 37,
+        status: 'completed',
+        time: '11:00',
+        date: '今天'
+      },
+      {
+        id: '20250630001',
+        dishes: [
+          { name: '红烧肉', quantity: 1, price: 38 },
+          { name: '蛋炒饭', quantity: 2, price: 16 }
+        ],
+        total: 70,
+        status: 'completed',
+        time: '18:45',
+        date: '昨天'
+      },
+      {
+        id: '20250630002',
+        dishes: [
+          { name: '芒果布丁', quantity: 3, price: 12 }
+        ],
+        total: 36,
+        status: 'pending',
+        time: '17:20',
+        date: '昨天'
+      }
+    ]
   },
 
   onLaunch() {
-    this.loadDishes();
-    this.loadCart();
-    this.loadOrders();
-  },
-
-  loadDishes() {
-    const dishes = wx.getStorageSync('dishes');
-    if (dishes && dishes.length > 0) {
-      this.globalData.dishes = dishes;
-    } else {
-      const defaultDishes = this.getDefaultDishes();
-      this.globalData.dishes = defaultDishes;
-      wx.setStorageSync('dishes', defaultDishes);
-    }
-  },
-
-  loadCart() {
-    const cart = wx.getStorageSync('cart');
-    if (cart) {
-      this.globalData.cart = cart;
-    }
-  },
-
-  loadOrders() {
-    const orders = wx.getStorageSync('orders');
-    if (orders) {
-      this.globalData.orders = orders;
-    }
-  },
-
-  getDefaultDishes() {
-    return [
-      {
-        id: 'dish_001',
-        name: '红烧肉',
-        category: 'meat',
-        price: 38.00,
-        description: '精选五花肉，慢火炖煮，入口即化，肥而不腻',
-        image: '/assets/images/dish-red-pork.jpg',
-        createdAt: Date.now()
-      },
-      {
-        id: 'dish_002',
-        name: '糖醋排骨',
-        category: 'meat',
-        price: 42.00,
-        description: '外酥里嫩，酸甜可口，开胃下饭',
-        image: '/assets/images/dish-pork-ribs.jpg',
-        createdAt: Date.now()
-      },
-      {
-        id: 'dish_003',
-        name: '清炒时蔬',
-        category: 'vegetable',
-        price: 18.00,
-        description: '新鲜时令蔬菜，清淡爽口，营养健康',
-        image: '/assets/images/dish-vegetable.jpg',
-        createdAt: Date.now()
-      },
-      {
-        id: 'dish_004',
-        name: '西红柿炒蛋',
-        category: 'home',
-        price: 16.00,
-        description: '经典家常菜，酸甜开胃，老少皆宜',
-        image: '/assets/images/dish-tomato-egg.jpg',
-        createdAt: Date.now()
-      },
-      {
-        id: 'dish_005',
-        name: '宫保鸡丁',
-        category: 'meat',
-        price: 35.00,
-        description: '香辣可口，花生酥脆，鸡肉嫩滑',
-        image: '/assets/images/dish-kung-pao.jpg',
-        createdAt: Date.now()
-      },
-      {
-        id: 'dish_006',
-        name: '紫菜蛋花汤',
-        category: 'soup',
-        price: 12.00,
-        description: '鲜香清淡，简单美味，饭前开胃',
-        image: '/assets/images/dish-soup.jpg',
-        createdAt: Date.now()
-      },
-      {
-        id: 'dish_007',
-        name: '鱼香肉丝',
-        category: 'meat',
-        price: 32.00,
-        description: '咸甜酸辣，香味浓郁，下饭神器',
-        image: '/assets/images/dish-fish-flavor.jpg',
-        createdAt: Date.now()
-      },
-      {
-        id: 'dish_008',
-        name: '白米饭',
-        category: 'staple',
-        price: 3.00,
-        description: '香软可口，颗粒分明，主食必备',
-        image: '/assets/images/dish-rice.jpg',
-        createdAt: Date.now()
-      }
-    ];
-  },
-
-  getDishes() {
-    return this.globalData.dishes;
-  },
-
-  getDishById(id) {
-    return this.globalData.dishes.find(d => d.id === id);
-  },
-
-  addDish(dish) {
-    const newDish = {
-      ...dish,
-      id: 'dish_' + Date.now(),
-      createdAt: Date.now()
-    };
-    this.globalData.dishes.push(newDish);
-    wx.setStorageSync('dishes', this.globalData.dishes);
-    return true;
-  },
-
-  deleteDish(id) {
-    const index = this.globalData.dishes.findIndex(d => d.id === id);
-    if (index > -1) {
-      this.globalData.dishes.splice(index, 1);
-      wx.setStorageSync('dishes', this.globalData.dishes);
-      return true;
-    }
-    return false;
-  },
-
-  getCart() {
-    return this.globalData.cart;
-  },
-
-  addToCart(dishId, quantity = 1) {
-    const existingItem = this.globalData.cart.find(item => item.dishId === dishId);
-    if (existingItem) {
-      existingItem.quantity += quantity;
-    } else {
-      this.globalData.cart.push({
-        dishId,
-        quantity,
-        selectedAt: Date.now()
-      });
-    }
-    wx.setStorageSync('cart', this.globalData.cart);
-    return true;
-  },
-
-  updateCartItem(dishId, quantity) {
-    const item = this.globalData.cart.find(item => item.dishId === dishId);
-    if (item) {
-      if (quantity <= 0) {
-        return this.removeFromCart(dishId);
-      }
-      item.quantity = quantity;
-      wx.setStorageSync('cart', this.globalData.cart);
-      return true;
-    }
-    return false;
-  },
-
-  removeFromCart(dishId) {
-    const index = this.globalData.cart.findIndex(item => item.dishId === dishId);
-    if (index > -1) {
-      this.globalData.cart.splice(index, 1);
-      wx.setStorageSync('cart', this.globalData.cart);
-      return true;
-    }
-    return false;
-  },
-
-  clearCart() {
-    this.globalData.cart = [];
-    wx.setStorageSync('cart', this.globalData.cart);
-  },
-
-  getCartTotal() {
-    let total = 0;
-    this.globalData.cart.forEach(item => {
-      const dish = this.getDishById(item.dishId);
-      if (dish) {
-        total += dish.price * item.quantity;
-      }
-    });
-    return total;
-  },
-
-  getOrders() {
-    return this.globalData.orders;
-  },
-
-  createOrder() {
-    if (this.globalData.cart.length === 0) {
-      return null;
-    }
-
-    const order = {
-      id: 'order_' + Date.now(),
-      items: JSON.parse(JSON.stringify(this.globalData.cart)),
-      totalPrice: this.getCartTotal(),
-      status: 'pending',
-      createdAt: Date.now()
-    };
-
-    this.globalData.orders.push(order);
-    wx.setStorageSync('orders', this.globalData.orders);
-    this.clearCart();
-    return order;
-  },
-
-  getOrderById(id) {
-    return this.globalData.orders.find(o => o.id === id);
+    // 初始化
   }
-});
+})

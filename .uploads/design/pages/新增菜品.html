@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="light" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新增菜品</title>
+    <style id="theme-vars">
+/* Family Menu - iOS-inspired Minimalist White Theme */
+:root {
+  /* Brand Colors */
+  --color-primary: #FF6B35;
+  --color-primary-hover: #E85A25;
+  --color-primary-light: #FFF0EB;
+  --color-primary-subtle: #FFF5F0;
+
+  /* Neutrals - iOS System Gray Scale */
+  --color-bg-primary: #FFFFFF;
+  --color-bg-secondary: #F2F2F7;
+  --color-bg-tertiary: #E5E5EA;
+  --color-bg-elevated: #FFFFFF;
+
+  /* Text Colors */
+  --color-text-primary: #1C1C1E;
+  --color-text-secondary: #8E8E93;
+  --color-text-tertiary: #AEAEB2;
+  --color-text-inverse: #FFFFFF;
+
+  /* Semantic State Colors */
+  --state-success: #34C759;
+  --state-success-bg: #E8F9ED;
+  --state-warning: #FF9F0A;
+  --state-warning-bg: #FFF6E0;
+  --state-error: #FF3B30;
+  --state-error-bg: #FFE8E7;
+  --state-info: #007AFF;
+  --state-info-bg: #E5F1FF;
+
+  /* Border & Divider */
+  --color-border: rgba(0, 0, 0, 0.06);
+  --color-border-strong: rgba(0, 0, 0, 0.12);
+  --color-divider: rgba(60, 60, 67, 0.08);
+
+  /* Shadows - iOS style subtle elevation */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.10);
+  --shadow-float: 0 16px 48px rgba(0, 0, 0, 0.12);
+
+  /* Radius Scale - iOS style rounded corners */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+
+  /* Spacing Scale */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
+  --spacing-xl: 20px;
+  --spacing-2xl: 24px;
+  --spacing-3xl: 32px;
+  --spacing-4xl: 40px;
+
+  /* Typography - SF Pro inspired */
+  --font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --font-family-display: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --font-family-body: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+
+  /* Type Scale */
+  --text-xs: 11px;
+  --text-xs-lh: 1.36;
+  --text-sm: 13px;
+  --text-sm-lh: 1.38;
+  --text-base: 15px;
+  --text-base-lh: 1.47;
+  --text-md: 17px;
+  --text-md-lh: 1.41;
+  --text-lg: 20px;
+  --text-lg-lh: 1.4;
+  --text-xl: 24px;
+  --text-xl-lh: 1.33;
+  --text-2xl: 28px;
+  --text-2xl-lh: 1.29;
+  --text-3xl: 34px;
+  --text-3xl-lh: 1.24;
+
+  /* Font Weights */
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  /* Component Dimensions */
+  --control-height-sm: 32px;
+  --control-height-md: 36px;
+  --control-height-lg: 44px;
+  --control-height-xl: 50px;
+
+  /* Mini Program Nav Bar */
+  --nav-bar-height: 44px;
+  --status-bar-height: 20px;
+  --tab-bar-height: 49px;
+  --safe-area-bottom: 34px;
+}
+
+/* Typography Classes */
+.typography-display {
+  font-family: var(--font-family-display);
+  font-weight: var(--weight-bold);
+  letter-spacing: -0.02em;
+}
+
+.typography-title-1 {
+  font-family: var(--font-family-display);
+  font-size: var(--text-3xl);
+  font-weight: var(--weight-bold);
+  letter-spacing: -0.02em;
+  line-height: var(--text-3xl-lh);
+  color: var(--color-text-primary);
+}
+
+.typography-title-2 {
+  font-family: var(--font-family-display);
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-bold);
+  letter-spacing: -0.01em;
+  line-height: var(--text-2xl-lh);
+  color: var(--color-text-primary);
+}
+
+.typography-title-3 {
+  font-family: var(--font-family-display);
+  font-size: var(--text-xl);
+  font-weight: var(--weight-semibold);
+  letter-spacing: -0.01em;
+  line-height: var(--text-xl-lh);
+  color: var(--color-text-primary);
+}
+
+.typography-headline {
+  font-family: var(--font-family-body);
+  font-size: var(--text-md);
+  font-weight: var(--weight-semibold);
+  line-height: var(--text-md-lh);
+  color: var(--color-text-primary);
+}
+
+.typography-body {
+  font-family: var(--font-family-body);
+  font-size: var(--text-base);
+  font-weight: var(--weight-regular);
+  line-height: var(--text-base-lh);
+  color: var(--color-text-primary);
+}
+
+.typography-callout {
+  font-family: var(--font-family-body);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-regular);
+  line-height: var(--text-sm-lh);
+  color: var(--color-text-secondary);
+}
+
+.typography-caption {
+  font-family: var(--font-family-body);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-regular);
+  line-height: var(--text-xs-lh);
+  color: var(--color-text-tertiary);
+}
+
+.typography-price {
+  font-family: var(--font-family-display);
+  font-weight: var(--weight-bold);
+  color: var(--color-primary);
+}
+
+/* iOS-style Card Surface */
+.surface-card {
+  background: var(--color-bg-elevated);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+/* iOS-style List Group */
+.surface-grouped {
+  background: var(--color-bg-elevated);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+/* iOS-style Floating Panel */
+.surface-float {
+  background: var(--color-bg-elevated);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-float);
+}
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-primary: var(--color-primary);
+    --color-border: var(--color-border);
+  }
+  @layer base {
+    body { background: var(--color-bg-primary); color: var(--color-text-primary); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+</head>
+<body class="min-h-screen font-sans antialiased" style="background: var(--color-bg-secondary); font-family: var(--font-family);">
+    <main class="pb-[100px]">
+
+        <!-- Nav Bar -->
+        <header class="sticky top-0 z-30 border-b" style="border-color: var(--color-border); background: var(--color-bg-secondary); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);">
+            <div class="flex items-center" style="height: var(--nav-bar-height); padding: 0 16px;">
+                <div class="flex items-center" style="width: 88px;">
+                    <button data-dom-id="back-to-list" class="inline-flex items-center justify-center" style="width: 32px; height: 32px; border-radius: var(--radius-sm);" aria-label="返回">
+                        <i data-lucide="chevron-left" style="width: 20px; height: 20px; color: var(--color-primary);"></i>
+                    </button>
+                </div>
+                <div class="flex-1 text-center truncate" style="font-size: var(--text-md); font-weight: var(--weight-semibold); color: var(--color-text-primary); letter-spacing: -0.01em;">新增菜品</div>
+                <div class="flex h-8 w-[88px] items-center justify-center" style="margin-right: var(--spacing-lg); border-radius: var(--radius-full); background: var(--color-bg-secondary); border: 1px solid var(--color-border);">
+                    <button class="flex h-full flex-1 items-center justify-center" aria-label="更多">
+                        <i data-lucide="more-horizontal" class="h-4 w-4" style="color: var(--color-text-secondary);"></i>
+                    </button>
+                    <span class="h-4 w-px" style="background: var(--color-border);" aria-hidden="true"></span>
+                    <button class="flex h-full flex-1 items-center justify-center" aria-label="关闭">
+                        <i data-lucide="x" class="h-4 w-4" style="color: var(--color-text-secondary);"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <div class="mx-auto" style="max-width: 414px; padding: 0 16px;">
+
+            <!-- Photo Upload Area -->
+            <section class="flex flex-col items-center pt-5 pb-3">
+                <button class="flex flex-col items-center justify-center" style="width: 120px; height: 120px; border-radius: var(--radius-lg); border: 2px dashed var(--color-border-strong); background: var(--color-bg-elevated); transition: border-color 120ms ease, background-color 120ms ease; cursor: pointer;" aria-label="添加照片">
+                    <i data-lucide="camera" style="width: 32px; height: 32px; color: var(--color-text-tertiary); margin-bottom: 8px;"></i>
+                    <span style="font-size: var(--text-xs); color: var(--color-text-tertiary); font-weight: var(--weight-medium);">添加照片</span>
+                </button>
+            </section>
+
+            <!-- Section 1: 基本信息 -->
+            <section class="mt-3">
+                <h3 style="font-size: var(--text-sm); color: var(--color-text-secondary); font-weight: var(--weight-medium); text-transform: uppercase; letter-spacing: 0.05em; padding-left: 4px; margin-bottom: 8px;">基本信息</h3>
+                <div class="surface-grouped" style="box-shadow: var(--shadow-sm);">
+                    <!-- 菜品名称 -->
+                    <div class="flex items-center" style="height: 44px; padding: 0 16px;">
+                        <label class="shrink-0" style="width: 72px; font-size: var(--text-base); color: var(--color-text-primary); font-weight: var(--weight-regular);">菜品名称</label>
+                        <input type="text" placeholder="请输入菜品名称" class="flex-1 min-w-0 bg-transparent outline-none text-right truncate" style="font-size: var(--text-base); color: var(--color-text-primary); caret-color: var(--color-primary);">
+                    </div>
+                    <div style="height: 1px; background: var(--color-divider); margin-left: 16px;"></div>
+                    <!-- 菜品分类 -->
+                    <button class="flex items-center w-full" style="height: 44px; padding: 0 16px; cursor: pointer;">
+                        <label class="shrink-0" style="width: 72px; font-size: var(--text-base); color: var(--color-text-primary); font-weight: var(--weight-regular);">菜品分类</label>
+                        <span class="flex-1 min-w-0 text-right truncate" style="font-size: var(--text-base); color: var(--color-text-tertiary);">请选择</span>
+                        <i data-lucide="chevron-right" style="width: 16px; height: 16px; color: var(--color-text-tertiary); margin-left: 4px; flex-shrink: 0;"></i>
+                    </button>
+                    <div style="height: 1px; background: var(--color-divider); margin-left: 16px;"></div>
+                    <!-- 价格 -->
+                    <div class="flex items-center" style="height: 44px; padding: 0 16px;">
+                        <label class="shrink-0" style="width: 72px; font-size: var(--text-base); color: var(--color-text-primary); font-weight: var(--weight-regular);">价格</label>
+                        <div class="flex flex-1 min-w-0 items-center justify-end">
+                            <span style="font-size: var(--text-base); color: var(--color-text-primary); margin-right: 2px;">&yen;</span>
+                            <input type="text" placeholder="0.00" class="bg-transparent outline-none text-right truncate" style="width: 100px; font-size: var(--text-base); color: var(--color-text-primary); caret-color: var(--color-primary);">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: 详细信息 -->
+            <section class="mt-3">
+                <h3 style="font-size: var(--text-sm); color: var(--color-text-secondary); font-weight: var(--weight-medium); text-transform: uppercase; letter-spacing: 0.05em; padding-left: 4px; margin-bottom: 8px;">详细信息</h3>
+                <div class="surface-grouped" style="box-shadow: var(--shadow-sm);">
+                    <!-- 食材配料 -->
+                    <div style="padding: 12px 16px;">
+                        <label class="block mb-2" style="font-size: var(--text-base); color: var(--color-text-primary); font-weight: var(--weight-regular);">食材配料</label>
+                        <textarea placeholder="请输入食材配料，用逗号分隔" rows="3" class="w-full bg-transparent outline-none resize-none" style="font-size: var(--text-base); color: var(--color-text-primary); line-height: 1.5; caret-color: var(--color-primary);"></textarea>
+                    </div>
+                    <div style="height: 1px; background: var(--color-divider); margin-left: 16px;"></div>
+                    <!-- 烹饪时间 -->
+                    <div class="flex items-center" style="height: 44px; padding: 0 16px;">
+                        <label class="shrink-0" style="width: 72px; font-size: var(--text-base); color: var(--color-text-primary); font-weight: var(--weight-regular);">烹饪时间</label>
+                        <div class="flex flex-1 min-w-0 items-center justify-end">
+                            <input type="text" placeholder="30" class="bg-transparent outline-none text-right truncate" style="width: 60px; font-size: var(--text-base); color: var(--color-text-primary); caret-color: var(--color-primary);">
+                            <span style="font-size: var(--text-base); color: var(--color-text-tertiary); margin-left: 4px;">分钟</span>
+                        </div>
+                    </div>
+                    <div style="height: 1px; background: var(--color-divider); margin-left: 16px;"></div>
+                    <!-- 难度等级 -->
+                    <button class="flex items-center w-full" style="height: 44px; padding: 0 16px; cursor: pointer;">
+                        <label class="shrink-0" style="width: 72px; font-size: var(--text-base); color: var(--color-text-primary); font-weight: var(--weight-regular);">难度等级</label>
+                        <span class="flex-1 min-w-0 text-right truncate" style="font-size: var(--text-base); color: var(--color-text-primary);">简单</span>
+                        <i data-lucide="chevron-right" style="width: 16px; height: 16px; color: var(--color-text-tertiary); margin-left: 4px; flex-shrink: 0;"></i>
+                    </button>
+                    <div style="height: 1px; background: var(--color-divider); margin-left: 16px;"></div>
+                    <!-- 菜品描述 -->
+                    <div style="padding: 12px 16px;">
+                        <label class="block mb-2" style="font-size: var(--text-base); color: var(--color-text-primary); font-weight: var(--weight-regular);">菜品描述</label>
+                        <textarea placeholder="请输入菜品描述" rows="3" class="w-full bg-transparent outline-none resize-none" style="font-size: var(--text-base); color: var(--color-text-primary); line-height: 1.5; caret-color: var(--color-primary);"></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: 烹饪步骤 -->
+            <section class="mt-3">
+                <h3 style="font-size: var(--text-sm); color: var(--color-text-secondary); font-weight: var(--weight-medium); text-transform: uppercase; letter-spacing: 0.05em; padding-left: 4px; margin-bottom: 8px;">烹饪步骤</h3>
+                <div class="surface-grouped" style="box-shadow: var(--shadow-sm);">
+                    <!-- Step 1 -->
+                    <div class="flex items-center" style="height: 44px; padding: 0 16px;">
+                        <span class="shrink-0" style="font-size: var(--text-base); color: var(--color-primary); font-weight: var(--weight-semibold); margin-right: 10px; min-width: 24px;">1.</span>
+                        <input type="text" placeholder="输入步骤描述" class="flex-1 min-w-0 bg-transparent outline-none truncate" style="font-size: var(--text-base); color: var(--color-text-primary); caret-color: var(--color-primary);">
+                        <button class="shrink-0 inline-flex items-center justify-center" style="width: 28px; height: 28px; margin-left: 8px; border-radius: var(--radius-xs);" aria-label="删除步骤1">
+                            <i data-lucide="x" style="width: 14px; height: 14px; color: var(--color-text-tertiary);"></i>
+                        </button>
+                    </div>
+                    <div style="height: 1px; background: var(--color-divider); margin-left: 16px;"></div>
+                    <!-- Step 2 -->
+                    <div class="flex items-center" style="height: 44px; padding: 0 16px;">
+                        <span class="shrink-0" style="font-size: var(--text-base); color: var(--color-primary); font-weight: var(--weight-semibold); margin-right: 10px; min-width: 24px;">2.</span>
+                        <input type="text" placeholder="输入步骤描述" class="flex-1 min-w-0 bg-transparent outline-none truncate" style="font-size: var(--text-base); color: var(--color-text-primary); caret-color: var(--color-primary);">
+                        <button class="shrink-0 inline-flex items-center justify-center" style="width: 28px; height: 28px; margin-left: 8px; border-radius: var(--radius-xs);" aria-label="删除步骤2">
+                            <i data-lucide="x" style="width: 14px; height: 14px; color: var(--color-text-tertiary);"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- Add Step Button -->
+                <button class="flex items-center justify-center w-full mt-2" style="height: 44px; border-radius: var(--radius-md); border: 1px dashed var(--color-border-strong); background: transparent; font-size: var(--text-base); color: var(--color-primary); font-weight: var(--weight-medium); cursor: pointer; transition: background-color 120ms ease;">
+                    <i data-lucide="plus" style="width: 16px; height: 16px; margin-right: 6px;"></i>
+                    添加步骤
+                </button>
+            </section>
+
+        </div>
+
+        <!-- Fixed Save Button -->
+        <div class="fixed bottom-0 inset-x-0 z-20" style="background: var(--color-bg-secondary); padding: 12px 16px 0;">
+            <div class="mx-auto" style="max-width: 414px;">
+                <button class="w-full flex items-center justify-center" style="height: 50px; border-radius: var(--radius-lg); background: var(--color-primary); color: var(--color-text-inverse); font-size: var(--text-md); font-weight: var(--weight-semibold); border: none; cursor: pointer; transition: opacity 120ms ease, transform 120ms ease; letter-spacing: -0.01em;">保存菜品</button>
+                <div style="height: 34px;"></div>
+            </div>
+        </div>
+
+    </main>
+    <script>lucide.createIcons();</script>
+</body>
+</html>

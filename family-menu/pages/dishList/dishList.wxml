@@ -1,0 +1,59 @@
+<!-- 菜品列表页 -->
+<view class="page">
+  <!-- 搜索栏 -->
+  <view class="search-bar">
+    <view class="search-input-wrap">
+      <image class="search-icon" src="/images/search.png" mode="aspectFit"></image>
+      <input class="search-input" placeholder="搜索菜品..." placeholder-class="search-placeholder" bindinput="onSearch" />
+    </view>
+  </view>
+
+  <!-- 分类标签 -->
+  <scroll-view class="category-tabs no-scrollbar" scroll-x="true">
+    <view class="category-list">
+      <view
+        wx:for="{{categories}}"
+        wx:key="index"
+        class="category-item {{currentCategory === index ? 'active' : ''}}"
+        bindtap="onCategoryTap"
+        data-index="{{index}}"
+      >{{item}}</view>
+    </view>
+  </scroll-view>
+
+  <!-- 菜品网格 -->
+  <view class="dish-grid">
+    <view
+      wx:for="{{filteredDishes}}"
+      wx:key="id"
+      class="dish-card"
+      bindtap="onDishTap"
+      data-id="{{item.id}}"
+    >
+      <view class="dish-image-wrap">
+        <image wx:if="{{item.image}}" class="dish-image" src="{{item.image}}" mode="aspectFill"></image>
+        <view wx:else class="dish-image-placeholder" style="background: {{item.placeholderColor}}">
+          <text class="placeholder-icon">🍽️</text>
+        </view>
+      </view>
+      <view class="dish-info">
+        <text class="dish-name">{{item.name}}</text>
+        <text class="dish-desc">{{item.description}}</text>
+        <view class="dish-footer">
+          <text class="dish-price">¥{{item.price}}</text>
+          <view class="add-btn" bindtap="onAddTap" data-id="{{item.id}}" catchtap="onAddTap">
+            加入
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部留白 -->
+  <view style="height: 100px;"></view>
+
+  <!-- 悬浮新增按钮 -->
+  <view class="fab" bindtap="onAddDishTap">
+    <text class="fab-icon">+</text>
+  </view>
+</view>

@@ -1,84 +1,90 @@
-const app = getApp();
+const app = getApp()
 
 Page({
   data: {
-    cartItems: [],
-    totalPrice: 0
+    cartList: [],
+    subtotal: 0,
+    safeAreaBottom: 34,
+    placeholderColors: [
+      'linear-gradient(135deg, #FF6B35 0%, #FF9F0A 100%)',
+      'linear-gradient(135deg, #FFCDD2 0%, #F8BBD9 100%)',
+      'linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%)',
+      'linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%)',
+      'linear-gradient(135deg, #FFF9C4 0%, #FFF176 100%)',
+      'linear-gradient(135deg, #FFE0EC 0%, #FFCDD2 100%)'
+    ]
+  },
+
+  onLoad() {
+    const systemInfo = wx.getSystemInfoSync()
+    this.setData({
+      safeAreaBottom: systemInfo.safeArea.bottom - systemInfo.safeArea.height
+    })
   },
 
   onShow() {
-    this.loadCart();
+    this.updateCart()
   },
 
-  loadCart() {
-    const cart = app.getCart();
-    const cartItems = cart.map(item => {
-      const dish = app.getDishById(item.dishId);
-      return {
-        ...dish,
-        quantity: item.quantity,
-        emoji: this.getEmoji(dish.category)
-      };
-    }).filter(item => item.id);
+  updateCart() {
+    const cartList = app.globalData.cartList.map((item, index) => ({
+      ...item,
+      placeholderColor: this.data.placeholderColors[index % 6]
+    }))
+
+    const subtotal = cartList.reduce((sum, item) => sum + item.price * item.quantity, 0)
 
     this.setData({
-      cartItems,
-      totalPrice: app.getCartTotal().toFixed(2)
-    });
+      cartList,
+      subtotal
+    })
   },
 
-  getEmoji(category) {
-    const emojiMap = {
-      'home': '🍳',
-      'meat': '🥩',
-      'vegetable': '🥬',
-      'soup': '🍲',
-      'staple': '🍚'
-    };
-    return emojiMap[category] || '🍽️';
-  },
+  onMinus(e) {
+    const index = e.currentTarget.dataset.index
+    const cartList = this.data.cartList
 
-  onDecrease(e) {
-    const id = e.currentTarget.dataset.id;
-    const item = this.data.cartItems.find(i => i.id === id);
-    if (item && item.quantity > 1) {
-      app.updateCartItem(id, item.quantity - 1);
-      this.loadCart();
-    }
-  },
-
-  onIncrease(e) {
-    const id = e.currentTarget.dataset.id;
-    const item = this.data.cartItems.find(i => i.id === id);
-    if (item) {
-      app.updateCartItem(id, item.quantity + 1);
-      this.loadCart();
-    }
-  },
-
-  onDelete(e) {
-    const id = e.currentTarget.dataset.id;
-    wx.showModal({
-      title: '确认删除',
-      content: '确定要从购物车中删除该菜品吗？',
-      success: (res) => {
-        if (res.confirm) {
-          app.removeFromCart(id);
-          this.loadCart();
+    if (cartList[index].quantity > 1) {
+      cartList[index].quantity--
+      app.globalData.cartList = cartList
+      this.updateCart()
+    } else {
+      wx.showModal({
+        title: '提示',
+        content: '确定要删除这个菜品吗？',
+        success: (res) => {
+          if (res.confirm) {
+            cartList.splice(index, 1)
+            app.globalData.cartList = cartList
+            this.updateCart()
+          }
         }
-      }
-    });
+      })
+    }
   },
 
-  onGoMenu() {
+  onPlus(e) {
+    const index = e.currentTarget.dataset.index
+    const cartList = this.data.cartList
+    cartList[index].quantity++
+    app.globalData.cartList = cartList
+    this.updateCart()
+  },
+
+  onGoShopping() {
     wx.switchTab({
-      url: '/pages/index/index'
-    });
+      url: '/pages/dishList/dishList'
+    })
   },
 
-  onCheckout() {
+  onSubmit() {
+    if (this.data.cartList.length === 0) {
+      wx.showToast({ title: '购物车是空的', icon: 'none' })
+      return
+    }
+
     wx.navigateTo({
-      url: '/pages/order/order'
-    });
+      url: '/pages/orderConfirm/orderConfirm'
+    })
   }
-});
+})
