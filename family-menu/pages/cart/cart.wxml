@@ -1,35 +1,66 @@
+<!-- 购物车页 -->
 <view class="page">
-  <view wx:if="{{cartItems.length > 0}}" class="cart-list">
-    <view wx:for="{{cartItems}}" wx:key="dishId" class="cart-item">
-      <view class="item-image-placeholder">
-        <text class="item-emoji">{{item.emoji}}</text>
+  <!-- 购物车列表 -->
+  <view class="cart-list" wx:if="{{cartList.length > 0}}">
+    <view wx:for="{{cartList}}" wx:key="id" class="cart-item">
+      <image wx:if="{{item.image}}" class="item-image" src="{{item.image}}" mode="aspectFill"></image>
+      <view wx:else class="item-image item-placeholder" style="background: {{item.placeholderColor}}">
+        <text class="placeholder-icon">🍽️</text>
       </view>
       <view class="item-info">
-        <view class="item-name">{{item.name}}</view>
-        <view class="item-price">¥{{item.price}}</view>
+        <text class="item-name">{{item.name}}</text>
+        <text class="item-desc">{{item.description}}</text>
+        <view class="item-footer">
+          <view class="stepper">
+            <view class="stepper-btn minus" catchtap="onMinus" data-index="{{index}}">
+              <text class="stepper-icon">−</text>
+            </view>
+            <text class="stepper-value">{{item.quantity}}</text>
+            <view class="stepper-btn plus" catchtap="onPlus" data-index="{{index}}">
+              <text class="stepper-icon">+</text>
+            </view>
+          </view>
+          <text class="item-price">¥{{item.price * item.quantity}}</text>
+        </view>
       </view>
-      <view class="item-controls">
-        <view class="control-btn" bindtap="onDecrease" data-id="{{item.id}}">-</view>
-        <view class="control-num">{{item.quantity}}</view>
-        <view class="control-btn" bindtap="onIncrease" data-id="{{item.id}}">+</view>
-      </view>
-      <view class="item-delete" bindtap="onDelete" data-id="{{item.id}}">
-        <text>×</text>
-      </view>
+    </view>
+    <view class="swipe-hint">
+      <text class="swipe-text">左滑删除</text>
     </view>
   </view>
 
-  <view wx:if="{{cartItems.length === 0}}" class="empty-state">
-    <view class="empty-icon">🛒</view>
-    <view class="empty-text">购物车是空的</view>
-    <view class="empty-btn" bindtap="onGoMenu">去选购</view>
+  <!-- 空购物车 -->
+  <view class="empty-cart" wx:else>
+    <view class="empty-icon-wrap">
+      <text class="empty-icon">🛒</text>
+    </view>
+    <text class="empty-title">购物车是空的</text>
+    <text class="empty-desc">去挑选心仪的菜品吧</text>
+    <view class="go-shopping-btn" bindtap="onGoShopping">去逛逛</view>
   </view>
 
-  <view wx:if="{{cartItems.length > 0}}" class="bottom-bar">
-    <view class="total-section">
-      <view class="total-label">合计</view>
-      <view class="total-price">¥{{totalPrice}}</view>
+  <!-- 订单摘要 -->
+  <view class="order-summary" wx:if="{{cartList.length > 0}}">
+    <view class="summary-row">
+      <text class="summary-label">小计</text>
+      <text class="summary-value">¥{{subtotal}}</text>
     </view>
-    <view class="checkout-btn" bindtap="onCheckout">去结算</view>
+    <view class="summary-divider"></view>
+    <view class="summary-row">
+      <text class="summary-label bold">合计</text>
+      <text class="summary-price">¥{{subtotal}}</text>
+    </view>
+  </view>
+
+  <!-- 底部留白 -->
+  <view style="height: 80px;"></view>
+
+  <!-- 底部提交栏 -->
+  <view class="bottom-bar" wx:if="{{cartList.length > 0}}" style="padding-bottom: {{safeAreaBottom}}px;">
+    <view class="total-info">
+      <text class="total-label">合计</text>
+      <text class="total-price">¥{{subtotal}}</text>
+    </view>
+    <view class="submit-btn" bindtap="onSubmit">提交订单</view>
   </view>
 </view>

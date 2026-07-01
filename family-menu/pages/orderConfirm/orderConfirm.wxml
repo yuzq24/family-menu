@@ -1,0 +1,80 @@
+<!-- 订单确认页 -->
+<view class="page">
+  <!-- 导航栏 -->
+  <view class="nav-bar">
+    <view class="nav-content">
+      <view class="nav-left">
+        <view class="back-btn" bindtap="onBack">
+          <text class="back-icon">‹</text>
+        </view>
+      </view>
+      <view class="nav-title">确认订单</view>
+      <view class="nav-right">
+        <view class="capsule-btn">
+          <text class="capsule-icon">···</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 主内容 -->
+  <view class="content">
+    <!-- 用餐人信息 -->
+    <view class="diner-card">
+      <view class="diner-accent"></view>
+      <view class="diner-content">
+        <text class="diner-icon">👤</text>
+        <view class="diner-info">
+          <view class="diner-name-row">
+            <text class="diner-name">{{dinerName}}</text>
+            <text class="diner-subtitle">下单给全家</text>
+          </view>
+          <text class="diner-count">共 {{totalCount}} 人用餐</text>
+        </view>
+        <text class="diner-arrow">›</text>
+      </view>
+    </view>
+
+    <!-- 订单明细 -->
+    <view class="order-card">
+      <view class="order-header">
+        <text class="order-title">订单明细</text>
+        <text class="order-count">({{cartList.length}}件)</text>
+      </view>
+      <view wx:for="{{cartList}}" wx:key="id" class="order-item">
+        <text class="item-name">{{item.name}}</text>
+        <view class="item-right">
+          <text class="item-qty">x{{item.quantity}}</text>
+          <text class="item-price">¥{{item.price * item.quantity}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 备注信息 -->
+    <view class="remark-card">
+      <text class="remark-title">备注信息</text>
+      <textarea class="remark-input" placeholder="请输入特殊要求（如：少辣、不要香菜等）" bindinput="onRemarkInput" value="{{remark}}"></textarea>
+    </view>
+
+    <!-- 价格摘要 -->
+    <view class="price-card">
+      <view class="price-row">
+        <text class="price-label">菜品小计</text>
+        <text class="price-value">¥{{subtotal}}</text>
+      </view>
+      <view class="price-total-row">
+        <text class="total-label">合计：</text>
+        <text class="total-price">¥{{subtotal}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部提交栏 -->
+  <view class="submit-bar" style="padding-bottom: {{safeAreaBottom}}px;">
+    <view class="total-info">
+      <text class="total-label">合计</text>
+      <text class="total-price">¥{{subtotal}}</text>
+    </view>
+    <view class="submit-btn" bindtap="onSubmit">提交订单给家人</view>
+  </view>
+</view>

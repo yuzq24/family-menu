@@ -1,0 +1,57 @@
+<!-- 我的页面 -->
+<view class="page">
+  <!-- 用户信息卡片 -->
+  <view class="user-card">
+    <view class="user-avatar">
+      <text class="avatar-icon">👤</text>
+    </view>
+    <view class="user-info">
+      <text class="user-name">张三</text>
+      <text class="user-desc">家庭管理员</text>
+    </view>
+  </view>
+
+  <!-- 菜单列表 -->
+  <view class="menu-list">
+    <!-- 订单历史 -->
+    <view class="menu-item" bindtap="onOrderHistory">
+      <view class="menu-left">
+        <text class="menu-icon">📋</text>
+        <text class="menu-text">订单历史</text>
+      </view>
+      <text class="menu-arrow">›</text>
+    </view>
+
+    <!-- 收货地址 -->
+    <view class="menu-item" bindtap="onAddress">
+      <view class="menu-left">
+        <text class="menu-icon">📍</text>
+        <text class="menu-text">收货地址</text>
+      </view>
+      <text class="menu-arrow">›</text>
+    </view>
+
+    <!-- 家庭成员 -->
+    <view class="menu-item" bindtap="onFamily">
+      <view class="menu-left">
+        <text class="menu-icon">👨‍👩‍👧</text>
+        <text class="menu-text">家庭成员</text>
+      </view>
+      <text class="menu-arrow">›</text>
+    </view>
+
+    <!-- 设置 -->
+    <view class="menu-item" bindtap="onSettings">
+      <view class="menu-left">
+        <text class="menu-icon">⚙️</text>
+        <text class="menu-text">设置</text>
+      </view>
+      <text class="menu-arrow">›</text>
+    </view>
+  </view>
+
+  <!-- 版本信息 -->
+  <view class="version-info">
+    <text class="version-text">家庭菜单 v1.0.0</text>
+  </view>
+</view>

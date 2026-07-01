@@ -1,0 +1,115 @@
+<!-- 新增菜品页 -->
+<view class="page">
+  <!-- 导航栏 -->
+  <view class="nav-bar">
+    <view class="nav-content">
+      <view class="nav-left">
+        <view class="back-btn" bindtap="onBack">
+          <text class="back-icon">‹</text>
+        </view>
+      </view>
+      <view class="nav-title">新增菜品</view>
+      <view class="nav-right">
+        <view class="capsule-btn">
+          <text class="capsule-icon">···</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 表单内容 -->
+  <view class="form-content">
+
+    <!-- 照片上传 -->
+    <view class="photo-upload" bindtap="onChooseImage">
+      <view class="upload-placeholder">
+        <text class="upload-icon">📷</text>
+        <text class="upload-text">添加照片</text>
+      </view>
+      <image wx:if="{{formData.image}}" class="upload-image" src="{{formData.image}}" mode="aspectFill"></image>
+    </view>
+
+    <!-- 基本信息 -->
+    <view class="form-section">
+      <text class="section-label">基本信息</text>
+      <view class="form-card">
+        <view class="form-item">
+          <text class="form-label">菜品名称</text>
+          <input class="form-input" placeholder="请输入菜品名称" bindinput="onNameInput" value="{{formData.name}}" />
+        </view>
+        <view class="form-divider"></view>
+        <view class="form-item" bindtap="onChooseCategory">
+          <text class="form-label">菜品分类</text>
+          <view class="form-value-row">
+            <text class="form-value {{formData.category ? '' : 'placeholder'}}">{{formData.category || '请选择'}}</text>
+            <text class="form-arrow">›</text>
+          </view>
+        </view>
+        <view class="form-divider"></view>
+        <view class="form-item">
+          <text class="form-label">价格</text>
+          <view class="form-input-row">
+            <text class="form-unit">¥</text>
+            <input class="form-input flex-1" type="digit" placeholder="0.00" bindinput="onPriceInput" value="{{formData.price}}" />
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 详细信息 -->
+    <view class="form-section">
+      <text class="section-label">详细信息</text>
+      <view class="form-card">
+        <view class="form-item column">
+          <text class="form-label">食材配料</text>
+          <textarea class="form-textarea" placeholder="请输入食材配料，用逗号分隔" bindinput="onIngredientsInput" value="{{formData.ingredients}}" />
+        </view>
+        <view class="form-divider"></view>
+        <view class="form-item">
+          <text class="form-label">烹饪时间</text>
+          <view class="form-input-row">
+            <input class="form-input short" type="number" placeholder="30" bindinput="onTimeInput" value="{{formData.cookingTime}}" />
+            <text class="form-unit">分钟</text>
+          </view>
+        </view>
+        <view class="form-divider"></view>
+        <view class="form-item" bindtap="onChooseDifficulty">
+          <text class="form-label">难度等级</text>
+          <view class="form-value-row">
+            <text class="form-value">{{formData.difficulty}}</text>
+            <text class="form-arrow">›</text>
+          </view>
+        </view>
+        <view class="form-divider"></view>
+        <view class="form-item column">
+          <text class="form-label">菜品描述</text>
+          <textarea class="form-textarea" placeholder="请输入菜品描述" bindinput="onDescInput" value="{{formData.description}}" />
+        </view>
+      </view>
+    </view>
+
+    <!-- 烹饪步骤 -->
+    <view class="form-section">
+      <text class="section-label">烹饪步骤</text>
+      <view class="form-card">
+        <view wx:for="{{formData.steps}}" wx:key="index" class="step-row">
+          <text class="step-num">{{index + 1}}.</text>
+          <input class="step-input" placeholder="输入步骤描述" bindinput="onStepInput" data-index="{{index}}" value="{{item}}" />
+          <view class="step-delete" bindtap="onDeleteStep" data-index="{{index}}">
+            <text class="delete-icon">×</text>
+          </view>
+        </view>
+        <view class="add-step-btn" bindtap="onAddStep">
+          <text class="add-step-icon">+</text>
+          <text class="add-step-text">添加步骤</text>
+        </view>
+      </view>
+    </view>
+
+  </view>
+
+  <!-- 底部保存按钮 -->
+  <view class="save-bar" style="padding-bottom: {{safeAreaBottom}}px;">
+    <view class="save-btn" bindtap="onSave">保存菜品</view>
+  </view>
+</view>

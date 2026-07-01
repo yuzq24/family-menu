@@ -1,0 +1,99 @@
+/* 我的页面样式 */
+
+.page {
+  min-height: 100vh;
+  background: var(--color-bg-secondary);
+  padding-bottom: calc(var(--tab-bar-height) + var(--safe-area-bottom));
+}
+
+/* 用户信息卡片 */
+.user-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 24px 16px;
+  background: var(--color-bg-primary);
+}
+
+.user-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--color-primary-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-icon {
+  font-size: 32px;
+}
+
+.user-info {
+  flex: 1;
+}
+
+.user-name {
+  display: block;
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.user-desc {
+  display: block;
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  margin-top: 4px;
+}
+
+/* 菜单列表 */
+.menu-list {
+  margin: 12px 0;
+  background: var(--color-bg-elevated);
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--color-divider);
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.menu-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.menu-icon {
+  font-size: 20px;
+}
+
+.menu-text {
+  font-size: var(--text-base);
+  color: var(--color-text-primary);
+}
+
+.menu-arrow {
+  font-size: 16px;
+  color: var(--color-text-tertiary);
+}
+
+/* 版本信息 */
+.version-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 0;
+}
+
+.version-text {
+  font-size: var(--text-xs);
+  color: var(--color-text-tertiary);
+}

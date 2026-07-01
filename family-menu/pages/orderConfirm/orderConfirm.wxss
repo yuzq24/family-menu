@@ -1,0 +1,336 @@
+/* 订单确认页样式 */
+
+.page {
+  min-height: 100vh;
+  background: var(--color-bg-secondary);
+}
+
+/* 导航栏 */
+.nav-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 30;
+  background: var(--color-bg-primary);
+  border-bottom: 1px solid var(--color-divider);
+}
+
+.nav-content {
+  display: flex;
+  align-items: center;
+  height: var(--nav-bar-height);
+  padding: 0 4px;
+}
+
+.nav-left, .nav-right {
+  width: 88px;
+  display: flex;
+  align-items: center;
+}
+
+.nav-left {
+  justify-content: flex-start;
+  padding-left: 4px;
+}
+
+.nav-right {
+  justify-content: flex-end;
+}
+
+.back-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-primary);
+  border: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back-icon {
+  font-size: 20px;
+  color: var(--color-text-primary);
+  font-weight: bold;
+}
+
+.nav-title {
+  flex: 1;
+  text-align: center;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.capsule-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: var(--color-text-secondary);
+}
+
+/* 主内容 */
+.content {
+  padding: calc(var(--status-bar-height) + var(--nav-bar-height) + 16px) 16px 100px;
+}
+
+/* 用餐人卡片 */
+.diner-card {
+  display: flex;
+  background: var(--color-bg-elevated);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.diner-accent {
+  width: 3px;
+  background: var(--color-primary);
+  border-radius: 0 2px 2px 0;
+}
+
+.diner-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+}
+
+.diner-icon {
+  font-size: 20px;
+}
+
+.diner-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.diner-name-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.diner-name {
+  font-size: var(--text-md);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.diner-subtitle {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+.diner-count {
+  display: block;
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  margin-top: 4px;
+}
+
+.diner-arrow {
+  font-size: 16px;
+  color: var(--color-text-tertiary);
+}
+
+/* 订单卡片 */
+.order-card {
+  background: var(--color-bg-elevated);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+
+.order-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+}
+
+.order-title {
+  font-size: var(--text-md);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.order-count {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+.order-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-top: 1px solid var(--color-divider);
+}
+
+.item-name {
+  font-size: var(--text-base);
+  color: var(--color-text-primary);
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.item-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.item-qty {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+.item-price {
+  font-size: var(--text-base);
+  font-weight: var(--weight-bold);
+  color: var(--color-primary);
+}
+
+/* 备注卡片 */
+.remark-card {
+  background: var(--color-bg-elevated);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  padding: 12px 16px;
+  margin-bottom: 12px;
+}
+
+.remark-title {
+  display: block;
+  font-size: var(--text-md);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text-primary);
+  margin-bottom: 8px;
+}
+
+.remark-input {
+  width: 100%;
+  min-height: 60px;
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  font-size: var(--text-base);
+  color: var(--color-text-primary);
+  line-height: 1.5;
+  box-sizing: border-box;
+}
+
+.remark-input:focus {
+  border-color: var(--color-primary);
+}
+
+/* 价格卡片 */
+.price-card {
+  background: var(--color-bg-elevated);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  padding: 12px 16px;
+}
+
+.price-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.price-label {
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+}
+
+.price-value {
+  font-size: var(--text-base);
+  color: var(--color-text-primary);
+}
+
+.price-total-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  padding-top: 12px;
+}
+
+.total-label {
+  font-size: var(--text-md);
+  color: var(--color-text-primary);
+}
+
+.total-price {
+  font-size: var(--text-xl);
+  font-weight: var(--weight-bold);
+  color: var(--color-primary);
+}
+
+/* 底部提交栏 */
+.submit-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 40;
+  background: var(--color-bg-primary);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  height: calc(50px + env(safe-area-inset-bottom, 0px));
+}
+
+.total-info {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.total-label {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+.total-price {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-bold);
+  color: var(--color-primary);
+}
+
+.submit-btn {
+  height: 50px;
+  padding: 0 32px;
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
+  border-radius: var(--radius-md);
+  font-size: var(--text-md);
+  font-weight: var(--weight-semibold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.submit-btn:active {
+  opacity: 0.85;
+}

@@ -1,0 +1,102 @@
+<!-- 菜品详情页 -->
+<view class="page">
+  <!-- 导航栏 -->
+  <view class="nav-bar" style="padding-top: {{statusBarHeight}}px;">
+    <view class="nav-content">
+      <view class="nav-left">
+        <view class="back-btn" bindtap="onBack">
+          <text class="back-icon">‹</text>
+        </view>
+      </view>
+      <view class="nav-title">菜品详情</view>
+      <view class="nav-right">
+        <view class="capsule-btn">
+          <text class="capsule-icon">···</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 主内容 -->
+  <view class="content">
+    <!-- Hero图片 -->
+    <view class="hero-image">
+      <image wx:if="{{dish.image}}" class="hero-img" src="{{dish.image}}" mode="aspectFill"></image>
+      <view wx:else class="hero-placeholder" style="background: {{dish.placeholderColor}}">
+        <text class="placeholder-icon">🍽️</text>
+      </view>
+    </view>
+
+    <!-- 菜品信息卡片 -->
+    <view class="info-card">
+      <text class="dish-name">{{dish.name}}</text>
+      <text class="dish-desc">{{dish.description}}</text>
+      <view class="dish-meta">
+        <text class="dish-price">¥{{dish.price}}</text>
+        <view class="meta-tags">
+          <view class="meta-tag">
+            <text class="tag-icon">⏱</text>
+            <text class="tag-text">{{dish.cookingTime}}分钟</text>
+          </view>
+          <view class="meta-tag">
+            <text class="tag-icon">🔥</text>
+            <text class="tag-text">{{dish.difficulty}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 食材配料 -->
+    <view class="section-card">
+      <text class="section-title">食材配料</text>
+      <view class="ingredients-grid">
+        <view wx:for="{{dish.ingredients}}" wx:key="index" class="ingredient-tag">{{item}}</view>
+      </view>
+    </view>
+
+    <!-- 营养信息 -->
+    <view class="section-card">
+      <text class="section-title">营养信息</text>
+      <view class="nutrition-grid">
+        <view class="nutrition-item">
+          <text class="nutrition-value">{{dish.calories}}</text>
+          <text class="nutrition-label">热量 kcal</text>
+        </view>
+        <view class="nutrition-item">
+          <text class="nutrition-value">{{dish.protein}}</text>
+          <text class="nutrition-label">蛋白质 g</text>
+        </view>
+        <view class="nutrition-item">
+          <text class="nutrition-value">{{dish.fat}}</text>
+          <text class="nutrition-label">脂肪 g</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 烹饪步骤 -->
+    <view class="section-card">
+      <text class="section-title">烹饪步骤</text>
+      <view class="steps-list">
+        <view wx:for="{{dish.steps}}" wx:key="index" class="step-item">
+          <view class="step-number {{index === dish.steps.length - 1 ? 'last' : ''}}">{{index + 1}}</view>
+          <view wx:if="{{index < dish.steps.length - 1}}" class="step-line"></view>
+          <text class="step-text">{{item}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部操作栏 -->
+  <view class="bottom-bar" style="padding-bottom: {{safeAreaBottom}}px;">
+    <view class="stepper">
+      <view class="stepper-btn minus" bindtap="onMinus">
+        <text class="stepper-icon">−</text>
+      </view>
+      <text class="stepper-value">{{quantity}}</text>
+      <view class="stepper-btn plus" bindtap="onPlus">
+        <text class="stepper-icon">+</text>
+      </view>
+    </view>
+    <view class="add-cart-btn" bindtap="onAddToCart">加入购物车</view>
+  </view>
+</view>
